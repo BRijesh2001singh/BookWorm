@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Home-page {
+  width: 100%;
+  min-height: 93.5vh;
+  max-height: auto;
+}
+
+.bookimg {
+  width: 90%;
+}
+
+.nav-item {
+  transition: 1s;
+}
+
+.nav-item span:hover {
+  color: rgb(125, 230, 240);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28260, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.heading h2 {
+  font-size: 80px;
+  font-family: bold;
+  font-weight: bolder;
+}
+
+.heading h1 {
+  font-size: 50px;
+  font-family: bold;
+  font-weight: bold;
+}
+
+.addbooksbg {
+  width: 100%;
+  min-height: 90vh;
+  max-height: 93vh;
+}
+
+.addbooks {
+  width: 50%;
+  min-height: 50vh;
+  max-height: auto;
+  margin-top: 5%;
+}
