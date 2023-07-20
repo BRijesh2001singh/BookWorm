@@ -9,7 +9,7 @@ const Addbook = () => {
     };
     const submit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:1000/api/v1/add", Data).then((res) => alert("BOOK ADDED"));
+        await axios.post("https://bookstore-api-duao.onrender.com/api/v1/add", Data).then((res) => alert("BOOK ADDED"));
         setData({ bookname: "", description: "", author: "", image: "", price: "" });
     }
 

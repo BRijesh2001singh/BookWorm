@@ -5,7 +5,7 @@ const Bookssection = ({ data }) => {
     const deletebook = (id) => {
         var passkey = prompt("Enter password");
         if (passkey === "Brijesh@123") {
-            axios.delete(`http://localhost:1000/api/v1/deleteBook/${id}`)
+            axios.delete(`https://bookstore-api-duao.onrender.com/api/v1/deleteBook/${id}`)
                 .then(response => {
                     alert("BOOK IS DELETED");
                 })
