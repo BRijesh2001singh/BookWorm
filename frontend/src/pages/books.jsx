@@ -15,10 +15,11 @@ const Books = () => {
             <div className='d-flex justify-content-center allign-items-center my-1 py-4'>
                 <h4 className='text-white'>Books Section</h4>
             </div>
-            {Data ? (<Bookssection data={Data} />) : (<div className='text-white'>Loading...</div>)};
+            {Data ? (<Bookssection data={Data} />) : (<div className='text-white d-flex justify-content-center allign-items-center'>LOADING BOOKS <p>&#128516;</p> ...</div>)};
 
         </div>
     )
 }
 
 export default Books;
+

@@ -50,3 +50,22 @@
   max-height: auto;
   margin-top: 5%;
 }
+
+.box {
+  text-decoration: none;
+  transition: box-shadow .3s;
+  width: 200px;
+  height: 450px;
+  border: 1px solid white;
+  border-radius: 50px;
+  background: #fff;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.box:hover {
+  box-shadow: 0 0 100px rgba(32, 184, 240, 0.769);
+  transform: translateY(-10px);
+}
+
+/* styling for description page */
