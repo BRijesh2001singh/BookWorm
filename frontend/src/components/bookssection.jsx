@@ -46,6 +46,7 @@ const Bookssection = ({ data }) => {
                         <div className='d-flex justify-content-around allign-items-center flex-wrap py-1'>
                             <button className='btn btn-primary' onClick={() => openEbook(item.readonline)}>Read Online</button>
                             <button className='btn btn-danger' onClick={() => deletebook(item._id)}>DELETE</button>
+
                         </div>
                     </div >
                 </>
