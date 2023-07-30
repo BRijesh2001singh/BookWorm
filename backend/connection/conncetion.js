@@ -1,3 +1,5 @@
-const mongoose=require("mongoose");
-mongoose.connect("mongodb+srv://brijesh1205singh:NaDFIGVGBw1awpX4@databseb.2rgna7f.mongodb.net/").
-then(()=>console.log("MONGOOSE CONNECTED"));
+const mongoose = require("mongoose");
+mongoose.connect(process.env.DB).
+    then(() => console.log("MONGOOSE CONNECTED")).catch((error) => {
+        console.log(error);
+    });
