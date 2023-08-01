@@ -23,16 +23,15 @@ const Bookssection = ({ data }) => {
         if (!url) {
             alert("EBOOK NOT AVAILABLE");
         } else {
-            window.location.href = url; // Redirect to the eBook URL
+            window.open(url, '_blank')// Redirect to the eBook URL
         }
     };
     const navigate = useNavigate();
-
     return (
-        <div className='book-content d-flex justify-content-around allign-items-center flex-row my-3 flex-wrap'>
+        <div className='book-content d-flex justify-content-start allign-items-center my-3 flex-wrap mx-5'>
             {data && data.map((item, index) =>
                 <>
-                    <div className='mb-2 box' >
+                    <div className='mb-2 box mx-3'>
                         <div>
                             <div className="book-cover">
                                 <img style={{ width: "200px", height: "270px", borderRadius: "50px" }}

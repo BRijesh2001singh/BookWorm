@@ -69,3 +69,19 @@
 }
 
 /* styling for description page */
+/* popup styling */
+.modalbtn button {
+  font-size: small;
+  color: white;
+  background: transparent;
+  border: 1px solid;
+}
+
+.modalcontainer {
+  background-color: aliceblue;
+  border-radius: 20px;
+  width: 20%;
+  font-size: small;
+  position: fixed;
+  opacity: .6;
+}
