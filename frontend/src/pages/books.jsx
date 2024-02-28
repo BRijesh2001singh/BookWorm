@@ -3,10 +3,11 @@ import axios from 'axios';
 import Bookssection from '../components/bookssection';
 import Modal from '../modal/modal';
 const Books = () => {
+    const apiURL = process.env.REACT_APP_API_URL;
     const [Data, setData] = useState();
     useEffect(() => {
         const fetch = async () => {
-            await axios.get("https://bookstore-api-duao.onrender.com/api/v1/get").then((res) => setData(res.data.books));
+            await axios.get(`${apiURL}/api/v1/get`).then((res) => setData(res.data.books));
         };
         fetch();
 
@@ -15,7 +16,7 @@ const Books = () => {
 
     // popup button ends
     return (
-        <div className='bg-dark' style={{ minHeight: "91.5vh" }}>
+        <div className='bg-dark' style={{ minHeight: "100vh" }}>
             <div className='d-flex justify-content-center allign-items-center my-1 py-4'>
                 <h4 className='text-white'>Books Section</h4>
             </div>
@@ -26,12 +27,10 @@ const Books = () => {
                 </div>
 
             </div>
-            )};
+            )}
 
         </div>
     )
 }
 
 export default Books;
-
-{/* <Bookssection data={Data} /> */ }

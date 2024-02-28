@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 const Description = () => {
+    const apiURL = process.env.REACT_APP_API_URL;
     const params = useParams();
     const id = params.id;//getting the id of selected book from the url
     const [Data, setData] = useState([]);
     useEffect(() => {
         const fetch = async () => {
-            await axios.get(`https://bookstore-api-duao.onrender.com/api/v1/get/${id}`).then((res) => setData(res.data.book));
+            await axios.get(`${apiURL}/api/v1/get/${id}`).then((res) => setData(res.data.book));
         };
         fetch();
 

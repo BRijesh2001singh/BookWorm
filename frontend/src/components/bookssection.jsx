@@ -2,11 +2,12 @@ import axios from 'axios';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 const Bookssection = ({ data }) => {
+    const apiURL = process.env.REACT_APP_API_URL;
     //delete book
     const deletebook = (id) => {
         var passkey = prompt("Enter password");
         if (passkey === "Brijesh@123") {
-            axios.delete(`https://bookstore-api-duao.onrender.com/api/v1/deleteBook/${id}`)
+            axios.delete(`${apiURL}/api/v1/deleteBook/${id}`)
                 .then(response => {
                     alert("BOOK IS DELETED");
                 })

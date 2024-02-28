@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 const Addbook = () => {
+    const apiURL = process.env.REACT_APP_API_URL;
     const [Data, setData] = useState({ bookname: "", description: "", author: "", image: "", readonline: "", price: "" });
 
     const change = (e) => {
@@ -9,7 +10,7 @@ const Addbook = () => {
     };
     const submit = async (e) => {
         e.preventDefault();
-        await axios.post("https://bookstore-api-duao.onrender.com/api/v1/add", Data).then((res) => alert("BOOK ADDED"));
+        await axios.post(`${apiURL}/api/v1/add`, Data).then((res) => alert("BOOK ADDED"));
         setData({ bookname: "", description: "", author: "", image: "", price: "" });
     }
 

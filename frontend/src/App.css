@@ -6,7 +6,7 @@
 
 .Home-page {
   width: 100%;
-  min-height: 93.5vh;
+  min-height: 95.5vh;
   max-height: auto;
 }
 
@@ -40,13 +40,13 @@
 
 .addbooksbg {
   width: 100%;
-  min-height: 90vh;
-  max-height: 93vh;
+  min-height: 93vh;
+  max-height: 100vh;
 }
 
 .addbooks {
   width: 50%;
-  min-height: 50vh;
+  min-height: 80vh;
   max-height: auto;
   margin-top: 5%;
 }
@@ -84,4 +84,74 @@
   font-size: small;
   position: fixed;
   opacity: .6;
+}
+
+/* //registeration styles */
+.verify_container {
+  height: 92vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./logo/book-library-with-open-textbook.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  box-shadow: 0px 0px 30 px rgba(0, 0, 0, 0.584);
+  padding: 2rem 5rem;
+  background-color: rgba(2, 2, 2, 0.5);
+  border-radius: 3px;
+}
+
+.form-container>input {
+  border: 0px;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.email-content,
+.password-content,
+.name-content {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: bolder;
+  color: white;
+}
+
+.form-btn {
+  margin-top: 20px;
+  border: 0px;
+  width: 50%;
+  font-weight: bolder;
+  color: white;
+  background-color: #ffffff21;
+  border-radius: 20px;
+
+}
+
+.register-toggle {
+  margin-top: 30%;
+}
+
+.register-toggle>.item1 {
+  color: white;
+  font-size: smaller;
+}
+
+.register-toggle>.item2 {
+  font-size: smaller;
+}
+
+.display-error {
+  color: red;
+  font-weight: bolder;
+  margin-top: 5px;
+  font-size: small;
 }
