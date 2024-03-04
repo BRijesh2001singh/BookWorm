@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Bookssection from '../components/bookssection';
-import Modal from '../modal/modal';
 const Books = () => {
     const apiURL = process.env.REACT_APP_API_URL;
     const [Data, setData] = useState();
@@ -31,7 +30,6 @@ const Books = () => {
             {Data ? <Bookssection data={Data} /> : (<div><Bookssection /><div className='text-white d-flex justify-content-center allign-items-center'>LOADING BOOKS ...<p>&#128516;</p>
             </div>
                 <div className='readmore text-white d-flex justify-content-center'>
-                    <Modal />
                 </div>
 
             </div>
