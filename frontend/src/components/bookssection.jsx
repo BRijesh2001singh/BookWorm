@@ -100,7 +100,7 @@ const Bookssection = ({ data }) => {
             </div>
             <h6 className='text-white'>Total Books:{bookcount}</h6>
             <div className='booksection-container'>
-                <div className='book-content d-flex justify-content-start allign-items-center my-3 flex-wrap mx-5'>
+                <div className='book-content d-flex justify-content-start allign-items-center my-3 flex-wrap '>
 
                     {displaydata && displaydata.map((item, index) =>
                         <>
