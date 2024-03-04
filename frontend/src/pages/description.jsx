@@ -14,7 +14,7 @@ const Description = () => {
 
     });
     return (
-        <div className='bg-dark d-flex justify-content-center' style={{ minHeight: "91.5vh" }}>
+        <div className='bg-dark d-flex justify-content-center' style={{ minHeight: "100vh" }}>
             <div className=" d-flex justify-content-center align-items-center flex-column"
                 style={{ width: "auto", height: "auto", overflow: "hidden" }}
             >

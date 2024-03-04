@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
     const [username, setusername] = useState("");
     const [email, setEmail] = useState("");
@@ -11,7 +13,7 @@ const Register = () => {
     const registeruser = async (e) => {
         e.preventDefault();
         if (username.length === 0 || email.length === 0 || password.length === 0) {
-            setdisplayerror("Cannot be empty");
+            setdisplayerror("Fields Cannot be empty");
             return null;
         }
         try {
@@ -22,12 +24,15 @@ const Register = () => {
             });
             console.log(response.status);
             if (response.status === 200) {
-                setdisplayerror("user Added");
+                toast.success('New Account Created');
+                setusername("");
+                setEmail("");
+                setPassword("");
             }
 
         } catch (err) {
             if (err.response.status === 409) {
-                setdisplayerror("email already exists");
+                setdisplayerror("⚠Email already exists");
             }
         }
     }

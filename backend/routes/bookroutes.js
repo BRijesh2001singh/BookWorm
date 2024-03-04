@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { response } = require("express");
 const bookmodel = require("../models/bookmodel");
 const usermodel = require("../models/user");
+const favourite = require("../models/favourite");
 //POST REquest
 router.post("/add", async (req, res) => {
   try {
@@ -20,6 +21,17 @@ router.get("/get", async (req, res) => {
   let books;
   try {
     books = await bookmodel.find();
+    res.status(200).json({ books });
+  }
+  catch (error) {
+    console.log(error);
+  }
+});
+//Get request for user profile
+router.post("/:id/getaddedbooks", async (req, res) => {
+  const userId = req.params.id;
+  try {
+    books = await bookmodel.find({ addedBy: userId });
     res.status(200).json({ books });
   }
   catch (error) {
@@ -95,13 +107,62 @@ router.post("/signin", async (req, res) => {
     console.log(err);
   }
 })
+//getallusers
+router.get("/getallusers", async (req, res) => {
+  const allusers = await usermodel.find();
+  res.json({ allusers });
+})
 //get user
 router.post("/getuser", async (req, res) => {
   const { email } = req.body;
   try {
     const user = await usermodel.findOne({ email });
-    return res.json({ name: user.name });
+    if (!user) return res.json({ message: "USER NOT FOUND" });
+    return res.json({ name: user.name, id: user._id, favbook: user.favbook });
   } catch (err) {
+    console.log(err);
+  }
+})
+//add fav books
+router.patch("/:userId/addfavbook", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const newfavbookId = req.body.newfavbookId;
+    //when new user adds fav book
+    let userexists = await favourite.findOne({ userId });
+    if (!userexists) {
+      let newuserfav = new favourite({ userId, favbookId: [] });
+      await newuserfav.save();
+    }
+    //this is when user is already present
+    const updatedFavbooks = await favourite.findOneAndUpdate({ userId }, { $push: { favbookId: newfavbookId } }, { new: true });
+    res.status(200).json({ favbookId: updatedFavbooks.favbookId });
+
+  } catch (err) {
+    console.log(err);
+  }
+})
+//delete fav books
+router.delete("/:userId/deletefavbook", async (req, res) => {
+  const userId = req.params.userId;
+  const favbookId = req.body.favbookId;
+  try {
+    await favourite.findOneAndUpdate({ userId }, { $pull: { favbookId: favbookId } }, { new: true });
+    res.status(200).json({ message: "Book Removed" });
+  } catch (err) {
+    console.log(err);
+  }
+})
+//get favbooks 
+router.get("/:userId/getfavbook", async (req, res) => {
+  userId = req.params.userId;
+  try {
+    const favbook = await favourite.findOne({ userId }).populate({ path: "favbookId", select: "bookname author readonline" });
+    if (!favbook) return res.json({ message: "No favourite books" });
+    const favbooklist = favbook.favbookId || [];
+    res.status(200).json({ favbooklist });
+  }
+  catch (err) {
     console.log(err);
   }
 })

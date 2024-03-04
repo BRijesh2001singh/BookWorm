@@ -38,9 +38,9 @@ const Navbar = () => {
                             <Link className="nav-item nav-link text-white" to="/books">
                                 <span>BOOKS</span>
                             </Link>
-                            <Link className="nav-item nav-link active text-white" to="/addbooks">
-                                <span>ADDBOOKS</span>
-                            </Link>
+                            {authenticate.value ? <Link className="nav-item nav-link active text-white" to="/profile">
+                                <span>PROFILE</span>
+                            </Link> : null}
                             {check ? <button className="nav-item nav-link active text-white" onClick={() => {
                                 authenticate.value = false;
                                 window.location.reload();
@@ -51,6 +51,7 @@ const Navbar = () => {
                                     <span>SIGN-IN</span>
                                 </Link>
                             }
+
                         </ul>
                     </div>
                 </div>

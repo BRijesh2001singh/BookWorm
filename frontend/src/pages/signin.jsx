@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signal } from "@preact/signals-react";
 export const authenticate = signal(false);
 export const authenticatedUser = signal("");
+export const authenticatedUsername = signal("");
+export const userid = signal("");
 const Signin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -15,7 +17,7 @@ const Signin = () => {
     const handlesignin = async (e) => {
         e.preventDefault();
         if (email.length === 0 || password.length === 0) {
-            setdisplayerror("Fields Cannot be empty");
+            setdisplayerror("⚠Fields Cannot be empty");
             return null;
         }
         try {
@@ -26,17 +28,19 @@ const Signin = () => {
             if (response.status === 200) {
                 authenticate.value = true;
                 authenticatedUser.value = email;
+
                 const response = await axios.post(`${apiURL}/api/v1/getuser`, {
                     email: authenticatedUser
                 });
-                authenticatedUser.value = (response.data.name);
+                authenticatedUsername.value = (response.data.name);
+                userid.value = (response.data.id);
             }
             navigate('/');
 
         } catch (err) {
-            if (err.response.status === 404) setdisplayerror("Email Not registered");
+            if (err.response.status === 404) setdisplayerror("⚠Email Not registered");
             else if (err.response.status === 401) {
-                setdisplayerror("Wrong Password");
+                setdisplayerror("⚠Wrong Password");
             }
         }
     }
