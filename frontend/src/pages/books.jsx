@@ -20,18 +20,30 @@ const Books = () => {
         return () => clearTimeout(debounceTimer);
     });
     // popup button start
-
     // popup button ends
     return (
-        <div className='bg-dark' style={{ minHeight: "100vh", maxHeight: "600vh" }}>
+        <div className='book-container bg-dark'>
             <div className='d-flex justify-content-center allign-items-center my-1 py-4'>
                 <h4 className='text-white'>Books Section</h4>
             </div>
-            {Data ? <Bookssection data={Data} /> : (<div><Bookssection /><div className='text-white d-flex justify-content-center allign-items-center'>LOADING BOOKS ...<p>&#128516;</p>
-            </div>
-                <div className='readmore text-white d-flex justify-content-center'>
+            {Data ? <Bookssection data={Data} /> : (<div><Bookssection />
+                {/* <div className='text-white d-flex justify-content-center allign-items-center'>
+                    LOADING BOOKS ...<p>&#128516;</p>
+                         
+                </div> */}
+                <div class="container">
+                    <div class="book">
+                        <div class="pages"></div>
+                        <div class="pages"></div>
+                        <div class="pages"></div>
+                        <div class="pages"></div>
+                        <div class="pages"></div>
+                        <div class="pages"></div>
+                        <div class="pages"></div>
+                        <div class="pages"></div>
+                    </div>
+                    <h1 class="title">Loading Books...</h1>
                 </div>
-
             </div>
             )}
 

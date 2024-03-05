@@ -104,7 +104,7 @@ const Bookssection = ({ data }) => {
 
                     {displaydata && displaydata.map((item, index) =>
                         <>
-                            <div className='mb-2 box mx-3' key={index}>
+                            <div className='mb-2 box mx-3 mx-4' key={index}>
                                 <div>
                                     <div className="book-cover">
                                         <img style={{ width: "200px", height: "270px", borderRadius: "50px" }}
