@@ -84,18 +84,23 @@ const Bookssection = ({ data }) => {
             console.log(err);
         }
     }
-    //display book count
+    // display book count
     useEffect(() => {
-        if (displaydata) setbookcount(displaydata.length);
+        try {
+            if (displaydata) setbookcount(displaydata.length);
+        }
+        catch (err) {
+            console.log(err);
+        }
     }, [displaydata]);
     return (
         <>
             <div className='filter-section'>
                 <h5 style={{ color: "white" }}>Apply Filter:</h5>
                 <select className='horizontal-dropdown' onChange={(e) => setselectedGenre(e.target.value)}>
-                    {genres.map((item, index) => <>
-                        <option key="index">{item}</option>
-                    </>)}
+                    {genres.map((item, index) =>
+                        <option key={index}>{item}</option>
+                    )}
                 </select>
             </div>
             <h6 className='text-white'>Total Books:{bookcount}</h6>
@@ -103,26 +108,25 @@ const Bookssection = ({ data }) => {
                 <div className='book-content d-flex justify-content-start allign-items-center my-3 flex-wrap '>
 
                     {displaydata && displaydata.map((item, index) =>
-                        <>
-                            <div className='mb-2 box mx-3 mx-4' key={index}>
-                                <div>
-                                    <div className="book-cover">
-                                        <img style={{ width: "200px", height: "270px", borderRadius: "50px" }}
-                                            src={item.image}
-                                            alt="/" onClick={() => navigate(`/description/${item._id}`)}
-                                        />
-                                    </div>
+                        <div className='mb-2 box mx-3 mx-4' key={index}>
+                            <div>
+                                <div className="book-cover">
+                                    <img style={{ width: "200px", height: "270px", borderRadius: "50px" }}
+                                        src={item.image}
+                                        alt="/" onClick={() => navigate(`/description/${item._id}`)}
+                                    />
                                 </div>
-                                <h6 style={{ fontSize: "15px", fontWeight: "bold" }} className='text-white my-1 px-2'>{item.bookname.slice(0, 20)}...</h6>
-                                <p className='mb-0 text-white' style={{ fontSize: "30px", fontWeight: "bold" }}>Rs. {item.price}</p>
-                                <div className='d-flex justify-content-around allign-items-center flex-wrap py-1'>
-                                    <button className='btn btn-primary my-1' onClick={() => openEbook(item.readonline)}>Read Online</button>
-                                    {isBookInFav(item._id) ? <button className='btn btn-danger' onClick={() => deletefavbook(item._id)}>
-                                        <FontAwesomeIcon icon={faStar} style={{ color: "gold" }} /></button> :
-                                        <button className='btn btn-danger' onClick={() => addtofav(item._id)}> <FontAwesomeIcon icon={faStar} /></button>}
-                                </div>
-                            </div >
-                        </>
+                            </div>
+                            <h6 style={{ fontSize: "15px", fontWeight: "bold" }} className='text-white my-1 px-2'>{item.bookname.slice(0, 20)}...</h6>
+                            <p className='mb-0 text-white' style={{ fontSize: "30px", fontWeight: "bold" }}>Rs. {item.price}</p>
+                            <div className='d-flex justify-content-around allign-items-center flex-wrap py-1'>
+                                <button className='btn btn-primary my-1' onClick={() => openEbook(item.readonline)}>Read Online</button>
+                                {isBookInFav(item._id) ? <button className='btn btn-danger' onClick={() => deletefavbook(item._id)}>
+                                    <FontAwesomeIcon icon={faStar} style={{ color: "gold" }} /></button> :
+                                    <button className='btn btn-danger' onClick={() => addtofav(item._id)}> <FontAwesomeIcon icon={faStar} /></button>}
+                            </div>
+                        </div >
+
                     )
                     }
                 </div >

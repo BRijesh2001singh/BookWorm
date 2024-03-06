@@ -35,7 +35,8 @@ const UserProfile = () => {
     //getbooks added by User
     useEffect(() => {
         const intervalId = setInterval(() => {
-            Addedbooks(setaddedbooks);
+            if (userid.value)
+                Addedbooks(setaddedbooks);
         }, 1000);
         return () => clearInterval(intervalId);
     }, [addedbooks]);
@@ -66,7 +67,7 @@ const UserProfile = () => {
                 <div className='fav-section'>
                     <h3 className="section-title">Favorite Books</h3>
                     <div className="book-list d-flex border">
-                        {favbook.length > 0 ? favbook.map((book, index) => (
+                        {favbook ? favbook.map((book, index) => (
                             <div key={index} >
                                 <li className="book-item">
                                     <div className='book-content' >
@@ -83,9 +84,9 @@ const UserProfile = () => {
                         <Link title='Add New BOOk' className='addbook-btn text-white active' to="/addbooks">
                             <FontAwesomeIcon icon={faAdd} style={{ color: "red" }} /></Link></span></h3>
                     <div className="book-list d-flex border">
-                        {addedbooks.length > 0 ? addedbooks.map((addedbook, index) => (
-                            <div>
-                                <li key={index} className="book-item">
+                        {addedbooks ? addedbooks.map((addedbook, index) => (
+                            <div key={index}>
+                                <li className="book-item">
                                     <div className='book-content'>
                                         <span>{index + 1}.</span> <span style={{ fontWeight: "bold" }}>{addedbook.bookname}</span><span> By {addedbook.author}</span>
                                         <button className="mx-2" onClick={() => deletebook(addedbook._id)} style={{ background: "transparent" }}><FontAwesomeIcon icon={faTrash} style={{ background: "transparent", color: "red" }} /></button>

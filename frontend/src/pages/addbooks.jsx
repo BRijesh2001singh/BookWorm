@@ -34,42 +34,42 @@ const Addbook = () => {
             <div className='addbooks bg-dark container'>
                 <h1 className='text-white'>Enter Book details</h1>
                 <form>
-                    <div class="form-group text-white">
-                        <label for="exampleInputEmail1">BookName</label>
-                        <input type="text" class="form-control" id="bookname" aria-describedby="emailHelp" placeholder="Enter bookname" name="bookname" onChange={change} value={Data.bookname} />
+                    <div className="form-group text-white">
+                        <label>BookName</label>
+                        <input type="text" className="form-control" id="bookname" aria-describedby="emailHelp" placeholder="Enter bookname" name="bookname" onChange={change} value={Data.bookname} />
                     </div>
-                    <div class="form-group text-white">
-                        <label for="exampleInputEmail1">Description</label>
-                        <textarea class="form-control" id="description" aria-describedby="emailHelp" placeholder="Enter Description" name="description" onChange={change} value={Data.description} />
+                    <div className="form-group text-white">
+                        <label >Description</label>
+                        <textarea className="form-control" id="description" aria-describedby="emailHelp" placeholder="Enter Description" name="description" onChange={change} value={Data.description} />
                     </div>
-                    <div class="form-group text-white">
-                        <label for="exampleInputEmail1">Author</label>
-                        <input type="text" class="form-control" id="Author" aria-describedby="emailHelp" placeholder="Enter Author" name="author" onChange={change} value={Data.author} />
+                    <div className="form-group text-white">
+                        <label>Author</label>
+                        <input type="text" className="form-control" id="Author" aria-describedby="emailHelp" placeholder="Enter Author" name="author" onChange={change} value={Data.author} />
                     </div>
-                    <div class="form-group text-white">
-                        <label for="exampleInputEmail1">Image</label>
-                        <input type="text" class="form-control" id="Image" aria-describedby="emailHelp" placeholder="Insert Image Link" name="image" onChange={change} value={Data.image} />
+                    <div className="form-group text-white">
+                        <label >Image</label>
+                        <input type="text" className="form-control" id="Image" aria-describedby="emailHelp" placeholder="Insert Image Link" name="image" onChange={change} value={Data.image} />
                     </div>
-                    <div class="form-group text-white">
-                        <label for="exampleInputEmail1">ReadOnline</label>
-                        <input type="text" class="form-control" id="Image" aria-describedby="emailHelp" placeholder="Give E-Book link if available" name="readonline" onChange={change} value={Data.readonline} />
+                    <div className="form-group text-white">
+                        <label>ReadOnline</label>
+                        <input type="text" className="form-control" id="Image" aria-describedby="emailHelp" placeholder="Give E-Book link if available" name="readonline" onChange={change} value={Data.readonline} />
                     </div>
-                    <div class="form-group text-white">
-                        <label for="exampleInputEmail1">Price</label>
-                        <input type="number" class="form-control" id="Price" aria-describedby="emailHelp" placeholder="Enter Price" name="price" onChange={change} value={Data.price} />
+                    <div className="form-group text-white">
+                        <label >Price</label>
+                        <input type="number" className="form-control" id="Price" aria-describedby="emailHelp" placeholder="Enter Price" name="price" onChange={change} value={Data.price} />
                     </div>
-                    <div class="form-group text-white my-2">
-                        <label for="exampleInputEmail1">Tag</label>
+                    <div className="form-group text-white my-2">
+                        <label >Tag</label>
                         <select className='horizontal-dropdown' name="tags" onChange={change} value={Data.tags}>
                             {genres.map((item, index) =>
-                                <>
-                                    <option key={index}>{item}</option>
-                                </>
+
+                                <option key={index}>{item}</option>
+
                             )}
                         </select>
                     </div>
                     <h6 style={{ color: "red" }}>{error}</h6>
-                    <button type="submit" class="btn btn-primary mt-2" onClick={submit}>Submit</button>
+                    <button type="submit" className="btn btn-primary mt-2" onClick={submit}>Submit</button>
                 </form>
             </div>
         </div>

@@ -40,14 +40,14 @@
 
 .addbooksbg {
   width: 100%;
-  min-height: 93vh;
-  max-height: 100vh;
+  min-height: 100vh;
+  max-height: 160vh;
+  background-color: #212529;
 }
 
 .addbooks {
   width: 50%;
-  min-height: 80vh;
-  max-height: auto;
+  height: 100%;
   margin-top: 5%;
 }
 
@@ -303,7 +303,7 @@
 }
 
 /*loading theme */
-.container {
+.loading-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

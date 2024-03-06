@@ -31,18 +31,18 @@ const Books = () => {
                     LOADING BOOKS ...<p>&#128516;</p>
                          
                 </div> */}
-                <div class="container">
-                    <div class="book">
-                        <div class="pages"></div>
-                        <div class="pages"></div>
-                        <div class="pages"></div>
-                        <div class="pages"></div>
-                        <div class="pages"></div>
-                        <div class="pages"></div>
-                        <div class="pages"></div>
-                        <div class="pages"></div>
+                <div className="loading-container">
+                    <div className="book">
+                        <div className="pages"></div>
+                        <div className="pages"></div>
+                        <div className="pages"></div>
+                        <div className="pages"></div>
+                        <div className="pages"></div>
+                        <div className="pages"></div>
+                        <div className="pages"></div>
+                        <div className="pages"></div>
                     </div>
-                    <h1 class="title">Loading Books...</h1>
+                    <h1 className="title">Loading Books...</h1>
                 </div>
             </div>
             )}
