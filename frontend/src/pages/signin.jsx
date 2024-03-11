@@ -24,6 +24,8 @@ const Signin = () => {
             const response = await axios.post(`${apiURL}/api/v1/signin`, {
                 email: email,
                 password: password
+            }, {
+                withCredentials: true
             });
             if (response.status === 200) {
                 authenticate.value = true;

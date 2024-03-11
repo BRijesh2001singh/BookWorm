@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authenticate } from '../pages/signin';
+import Cookies from 'js-cookie';
 const Navbar = () => {
     const [check, setCheck] = useState(authenticate.value);
     useEffect(() => {
@@ -42,6 +43,7 @@ const Navbar = () => {
                                 <span>PROFILE</span>
                             </Link> : null}
                             {check ? <button className="nav-item nav-link active text-white" onClick={() => {
+                                Cookies.remove("uuid");
                                 authenticate.value = false;
                                 window.location.reload();
                             }} >

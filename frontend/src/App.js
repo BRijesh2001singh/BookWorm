@@ -9,8 +9,21 @@ import Register from './pages/register';
 import Signin from './pages/signin';
 import UserProfile from './pages/userprofile';
 import { ToastContainer } from 'react-toastify';
+import { authenticatedUser, authenticate } from './pages/signin';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
+import getuserid from './store/getuserid';
 function App() {
+  const token = Cookies.get("uuid");
+  if (token) {
+    try {
+      const tokeninfo = jwtDecode(token, { complete: true });
+      authenticatedUser.value = tokeninfo.email;
+      authenticate.value = true;
+      getuserid(authenticatedUser.value);
+    } catch (err) { console.log(err) };
+  }
   return (
     <>
       <ToastContainer

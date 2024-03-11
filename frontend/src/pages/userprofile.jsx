@@ -9,12 +9,12 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faAdd } from '@fortawesome/free-solid-svg-icons'
 import Addedbooks from '../store/addedbooks';
 import { Link } from 'react-router-dom';
+import catavtaar from '../logo/cat-2083492_640.jpg'
 const apiURL = process.env.REACT_APP_API_URL;
 const UserProfile = () => {
     const [favbook, setfavbook] = useState([]);
     const [addedbooks, setaddedbooks] = useState([]);
-
-    const avatar = 'https://placekitten.com/100/100';
+    const avatar = 'https://loremflickr.com/640/360';
     //getfavbook details
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -58,7 +58,7 @@ const UserProfile = () => {
     };
     return (
         <div className="user-profile-container " style={{ minHeight: "100vh" }}>
-            <img src={avatar} alt="User Avatar" className="avatar" />
+            <img src={avatar ? avatar : catavtaar} alt="User Avatar" className="avatar" />
             <div className="user-info">
                 <h2 className="user-name">{authenticatedUsername.value}</h2>
                 <p className="user-email">{authenticatedUser.value}</p>
