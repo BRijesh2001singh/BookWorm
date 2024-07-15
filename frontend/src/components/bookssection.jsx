@@ -117,10 +117,10 @@ const Bookssection = ({ data }) => {
                                     />
                                 </div>
                             </div>
-                            <h6 style={{ fontSize: "15px", fontWeight: "bold" }} className='text-black my-1 px-2'>{item.bookname.slice(0, 20)}...</h6>
-                            <p className='mb-0 text-black' style={{ fontSize: "30px", fontWeight: "bold" }}>Rs. {item.price}</p>
+                            <h6 style={{ fontSize: "15px", fontWeight: "bold" }} className='text-white my-1 px-2'>{item.bookname.slice(0, 20)}...</h6>
+                            <p className='mb-0 text-white' style={{ fontSize: "30px", fontWeight: "bold" }}>Rs. {item.price}</p>
                             <div className='d-flex justify-content-around allign-items-center flex-wrap py-1'>
-                                <button className='btn btn-primary my-1' style={{ backgroundColor: "white", color: "black", border: "0px" }} onClick={() => openEbook(item.readonline)}>Read Online</button>
+                                <button className='reads-btn btn btn-primary my-1' onClick={() => openEbook(item.readonline)}>Read Online</button>
                                 {isBookInFav(item._id) ? <button className='btn ' onClick={() => deletefavbook(item._id)} style={{ backgroundColor: "transparent" }}>
                                     <FontAwesomeIcon icon={faStar} style={{ color: "gold" }} /></button> :
                                     <button className='btn' style={{ color: "black" }} onClick={() => addtofav(item._id)}> <FontAwesomeIcon icon={faStar} /></button>}
