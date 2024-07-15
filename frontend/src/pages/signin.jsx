@@ -30,7 +30,6 @@ const Signin = () => {
             if (response.status === 200) {
                 authenticate.value = true;
                 authenticatedUser.value = email;
-
                 const response = await axios.post(`${apiURL}/api/v1/getuser`, {
                     email: authenticatedUser
                 });
@@ -61,5 +60,4 @@ const Signin = () => {
         </div>
     )
 }
-
 export default Signin;
