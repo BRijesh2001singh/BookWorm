@@ -19,4 +19,4 @@ User can read reviews of books posted by other users
 ![App Screenshot](./screenshots/s6.png)
 
 User can also post reviews 
-![App Screenshot](./screenshots/s7.png)
+![App Screenshot](./screenshots/s7%20.png)
