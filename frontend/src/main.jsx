@@ -5,11 +5,12 @@ import { Provider } from 'react-redux'
 import Store from './store/store.js';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Userlogin from './pages/userLogin.jsx';
-import Userprofile from './pages/userProfile.jsx';
+
 import NotFound from './component/pageNotfound.jsx';
 import Addbook from './pages/addbooks.jsx';
 import Displaybooks from './pages/displayBook.jsx';
 import ViewDetails from './pages/viewDetail.jsx';
+import Profile from './pages/userProfile';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     element: <Userlogin />
   }, {
     path: "/userprofile",
-    element: <Userprofile />
+    element: <Profile />
   },
   {
     path: "/addbook",
