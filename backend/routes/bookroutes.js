@@ -2,9 +2,23 @@ const router = require("express").Router();
 const bookmodel = require("../models/bookmodel");
 const usermodel = require("../models/user");
 const favourite = require("../models/favourite");
+const reviewmodel = require('../models/review');
 const jwt = require("jsonwebtoken");
-const privatekey = "bookstore123";
 
+//cookie settings
+const expirationDate = new Date(Date.now() + 20 * 24 * 60 * 60 * 1000);
+const cookieOptions = {
+  sameSite: "None",
+  secure: true,
+  expires: expirationDate,
+  // domain: 'localhost'
+  domain: '.netlify.app'
+};
+
+//health
+router.get("/health", async (req, res) => {
+  res.send(200);
+})
 //POST REquest
 router.post("/add", async (req, res) => {
   try {
@@ -20,10 +34,9 @@ router.post("/add", async (req, res) => {
 })
 //Get request
 router.get("/get", async (req, res) => {
-  let books;
+
   try {
     books = await bookmodel.find();
-
     res.status(200).json({ books });
   }
   catch (error) {
@@ -36,6 +49,7 @@ router.post("/:id/getaddedbooks", async (req, res) => {
   try {
     books = await bookmodel.find({ addedBy: userId });
     res.status(200).json({ books });
+
   }
   catch (error) {
     console.log(error);
@@ -102,7 +116,7 @@ router.post("/signin", async (req, res) => {
     const passwordmatch = await user.comparePassword(password, user.password);
     if (passwordmatch) {
       const jwttoken = jwt.sign({ email: email }, process.env.PRIVATE_KEY);
-      res.cookie("uuid", jwttoken);
+      res.cookie("uuid", jwttoken, cookieOptions);
       res.status(200).json({ message: "User signed in" });
     }
     else {
@@ -173,3 +187,36 @@ router.get("/:userId/getfavbook", async (req, res) => {
   }
 })
 module.exports = router;
+
+//add a review 
+router.post("/:userId/addreview/:bookId", async (req, res) => {
+  try {
+    const { review } = req.body;
+    const { userId, bookId } = req.params;
+    const newreview = new reviewmodel({
+      userId,
+      bookId,
+      review
+    })
+    await newreview.save();
+    res.status(201).send({ message: "Review added successfully", review: newreview });
+
+  } catch (error) {
+    res.status(500).send({ message: "An error occured" });
+  }
+})
+
+router.get('/reviews/:bookId', async (req, res) => {
+  try {
+    const { bookId } = req.params;
+    const reviews = await reviewmodel.find({ bookId })
+      .populate('userId', 'name');
+    if (!reviews.length) {
+      return res.status(404).json({ message: 'No reviews found for this book' });
+    }
+    res.json(reviews);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});

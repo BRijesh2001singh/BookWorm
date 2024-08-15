@@ -1,105 +1,96 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { authenticatedUser, authenticatedUsername, userid } from './signin';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import getprofiledata from '../store/favbookutils';
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, setUser } from '../redux/slices/userAuth';
+import NavBar from '../component/navBar';
+import Favbooks from '../component/getfavbooks';
+import Addedbooks from '../component/booksAdded';
+import { useNavigate } from 'react-router-dom';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faAdd } from '@fortawesome/free-solid-svg-icons'
-import Addedbooks from '../store/addedbooks';
-import { Link } from 'react-router-dom';
-import catavtaar from '../logo/cat-2083492_640.jpg'
-const apiURL = process.env.REACT_APP_API_URL;
-const UserProfile = () => {
-    const [favbook, setfavbook] = useState([]);
-    const [addedbooks, setaddedbooks] = useState([]);
-    const avatar = 'https://loremflickr.com/640/360';
-    //getfavbook details
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            getprofiledata(setfavbook);
-        }, 1000);
-        return () => clearInterval(intervalId);
-    }, [favbook]);
-    //delete fav books
-    const deletefavbook = async (bookid) => {
-        const id = userid.value;
-        await axios.delete(`${apiURL}/api/v1/${id}/deletefavbook`, {
-            data: { favbookId: bookid }
-        }).then(() => {
-            toast.dark("Book removed from favourites")
-        }).catch((err) => console.log(err));
+import dp1 from "../assets/profile/dp1.jpg";
+import dp2 from "../assets/profile/dp2.jpg";
+import dp3 from "../assets/profile/dp3.jpg"
+const dp = [
+    dp1,
+    dp2,
+    dp3
+]
+let rindex = Math.floor(Math.random() % 3);
 
+const Userprofile = () => {
+    const [userName, setUserName] = useState("Guest");
+    const [userEmail, setUserEmail] = useState("Guest");
+    const { user, username } = useSelector((state) => state.auth);
+    const apiURL = import.meta.env.VITE_APP_API_URL;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    //if user is not present redirect to books
+    if (!user) {
+        console.log("user not present")
+        navigate("/");
     }
-
-    //getbooks added by User
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            if (userid.value)
-                Addedbooks(setaddedbooks);
-        }, 1000);
-        return () => clearInterval(intervalId);
-    }, [addedbooks]);
-    // delete book added by user
-    const deletebook = (id) => {
-        var passkey = prompt("your book get deleted from bookstore write DELETE MY BOOK if you want to continue");
-        if (passkey === "DELETE MY BOOK") {
-            axios.delete(`${apiURL}/api/v1/deleteBook/${id}`)
-                .then(response => {
-                    toast.dark("Book is deleted");
-                })
-                .catch(error => {
-                    console.error(error);
+        setUserEmail(user);
+        setUserName(username);
+    }, [user, username]);
+    //get name of user
+    useEffect(() => {
+        try {
+            const getName = async () => {
+                const res = await axios.post(`${apiURL}/api/v1/getuser`, {
+                    email: user,
                 });
+                setUserName(res.data.name);
+                const { id, name } = res.data;
+                dispatch(setUser({ name, id, user }));
+
+            }
+            getName();
+        } catch (error) {
+            console.log(error);
+        }
+    }, [])
+    //logout user 
+    const logOut = () => {
+        const check = window.confirm("You are about to log-out");
+        if (check) {
+            dispatch(logout());
+            navigate("/");
         }
         else {
-            alert("Wrong passkey");
+            return;
         }
-    };
+    }
     return (
-        <div className="user-profile-container " style={{ minHeight: "100vh" }}>
-            <img src={avatar ? avatar : catavtaar} alt="User Avatar" className="avatar" />
-            <div className="user-info">
-                <h2 className="user-name">{authenticatedUsername.value}</h2>
-                <p className="user-email">{authenticatedUser.value}</p>
-            </div>
-            <div className="books-section">
-                <div className='fav-section'>
-                    <h3 className="section-title">Favorite Books</h3>
-                    <div className="book-list d-flex border">
-                        {favbook ? favbook.map((book, index) => (
-                            <div key={index} >
-                                <li className="book-item">
-                                    <div className='book-content' >
-                                        <span>{index + 1}.</span> <span style={{ fontWeight: "bold" }}>{book.bookname}</span><span> By {book.author}</span><a href={book.readonline} target='._blank'>(Read)</a>
-                                        <button className="mx-2" onClick={() => deletefavbook(book._id)} style={{ background: "transparent" }}><FontAwesomeIcon icon={faTrash} style={{ background: "transparent", color: "red" }} /></button>
-                                    </div>
-                                </li>
-                            </div>
-                        )) : <h1>No books Added Yet</h1>}
+        <>
+            <NavBar />
+            <div className='user-profile'>
+                <h1>User Profile</h1>
+                <div className='user-board'>
+                    <div className='user-board-info'>
+                        <img src={dp[rindex]} />
+                        <span>Name:{userName}</span>
+                        <span>Email:{userEmail}</span>
+                        <button style={{
+                            color: "white", fontWeight: "bold", backgroundColor: "red", border: "none"
+                            , borderRadius: "5px"
+                        }}
+                            onClick={() => logOut()}
+                        >Log-Out  <FontAwesomeIcon icon={faRightFromBracket} /></button>
                     </div>
                 </div>
-                <div className='added-section'>
-                    <h3 className="section-title">Books Added BY You <span>
-                        <Link title='Add New BOOk' className='addbook-btn text-white active' to="/addbooks">
-                            <FontAwesomeIcon icon={faAdd} style={{ color: "red" }} /></Link></span></h3>
-                    <div className="book-list d-flex border">
-                        {addedbooks ? addedbooks.map((addedbook, index) => (
-                            <div key={index}>
-                                <li className="book-item">
-                                    <div className='book-content'>
-                                        <span>{index + 1}.</span> <span style={{ fontWeight: "bold" }}>{addedbook.bookname}</span><span> By {addedbook.author}</span>
-                                        <button className="mx-2" onClick={() => deletebook(addedbook._id)} style={{ background: "transparent" }}><FontAwesomeIcon icon={faTrash} style={{ background: "transparent", color: "red" }} /></button>
-                                    </div>
-                                </li>
-                            </div>
-                        )) : <h1>Click on add button to add books</h1>}
+                <div className='user-book-info text-white '>
+                    <div className='user-added-info px-2'>
+                        <Addedbooks />
+                    </div>
+                    <div className='user-fav-info px-2'>
+                        <Favbooks />
                     </div>
                 </div>
             </div>
-        </div>
-    );
-};
+        </>
+    )
+}
 
-export default UserProfile;
+export default Userprofile;
