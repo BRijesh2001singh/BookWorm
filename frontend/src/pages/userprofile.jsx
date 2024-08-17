@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, setUser } from '../redux/slices/userAuth';
@@ -11,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import dp1 from "../assets/profile/dp1.jpg";
 import dp2 from "../assets/profile/dp2.jpg";
 import dp3 from "../assets/profile/dp3.jpg";
+import getName from '../helper/getUserId';
+import Cookies from 'js-cookie';
 const Profile = () => {
     let dp = [
         dp1,
@@ -20,12 +21,11 @@ const Profile = () => {
     let rindex = Math.floor(Math.random() * 3);
     const [userName, setUserName] = useState("Guest");
     const [userEmail, setUserEmail] = useState("Guest");
-    const { user, username } = useSelector((state) => state.auth);
-    const apiURL = import.meta.env.VITE_APP_API_URL;
+    const { user, username, isAuthenticated } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     //if user is not present redirect to books
-    if (!user) {
+    if (!user && !isAuthenticated) {
         console.log("user not present")
         navigate("/");
     }
@@ -35,26 +35,23 @@ const Profile = () => {
     }, [user, username]);
     //get name of user
     useEffect(() => {
-        try {
-            const getName = async () => {
-                const res = await axios.post(`${apiURL}/api/v1/getuser`, {
-                    email: user,
-                });
-                setUserName(res.data.name);
-                const { id, name } = res.data;
-                dispatch(setUser({ name, id, user }));
-
-            }
-            getName();
-        } catch (error) {
-            console.log(error);
+        const getDetails = async () => {
+            const { id, name } = await getName(user);
+            setUserName(name);
+            dispatch(setUser({
+                user: user,
+                name: name,
+                id: id
+            }));
         }
+        getDetails();
     }, [])
     //logout user 
     const logOut = () => {
         const check = window.confirm("You are about to log-out");
         if (check) {
             dispatch(logout());
+            Cookies.remove("uuid")
             navigate("/");
         }
         else {
@@ -68,7 +65,7 @@ const Profile = () => {
                 <h1>User Profile</h1>
                 <div className='user-board'>
                     <div className='user-board-info'>
-                        <img src={dp[rindex]} />
+                        <img style={{ borderRadius: "100px" }} src={dp[rindex]} />
                         <span>Name:{userName}</span>
                         <span>Email:{userEmail}</span>
                         <button style={{

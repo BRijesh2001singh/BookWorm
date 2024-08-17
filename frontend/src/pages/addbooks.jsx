@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import NavBar from '../component/navBar';
 const Addbook = () => {
     const apiURL = import.meta.env.VITE_APP_API_URL;
-    const { userid } = useSelector((state) => state.auth);
+    const { userid, isAuthenticated } = useSelector((state) => state.auth);
     const [error, seterror] = useState("");
     const [Data, setData] = useState({ bookname: "", description: "", author: "", image: "", readonline: "", price: "", tags: "", addedBy: userid });
     const change = (e) => {
@@ -13,7 +13,7 @@ const Addbook = () => {
         setData({ ...Data, [name]: value });
     };
     useEffect(() => {
-        if (!userid) {
+        if (!isAuthenticated) {
             toast.error("Log-In to add books");
             return;
         }
@@ -21,7 +21,7 @@ const Addbook = () => {
 
     const submit = async (e) => {
         e.preventDefault();
-        if (!userid) {
+        if (!isAuthenticated) {
             alert("User not logged in!");
             return;
         }

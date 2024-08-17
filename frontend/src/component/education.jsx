@@ -12,7 +12,7 @@ const Education = () => {
     const [scrollpos, setScrollPos] = useState(0);
     const [favbook, setfavbook] = useState([]);
     const apiURL = import.meta.env.VITE_APP_API_URL;
-    const { userid, favbooks } = useSelector((state) => state.auth);
+    const { userid, favbooks, isAuthenticated } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const containerRef = useRef();
     const navigate = useNavigate();
@@ -45,14 +45,19 @@ const Education = () => {
                 const res = await axios.get(`${apiURL}/api/v1/${userid}/getfavbook`);
                 setfavbook(res.data.favbooklist);
                 dispatch(setUserFav({ favbooks: res.data.favbooklist })); // Dispatch the updated favbook list
+                console.log(res);
             } catch (error) {
                 console.log(error);
             }
         }
     };
+
     // add-to-fav
     const addtofav = async (bookid) => {
-        if (!userid) alert("Please LogIn to add favourite")
+        if (!isAuthenticated) {
+            alert("Please LogIn to add favourite")
+            return;
+        }
         const res = await axios.patch(`${apiURL}/api/v1/${userid}/addfavbook`, {
             newfavbookId: bookid
         })

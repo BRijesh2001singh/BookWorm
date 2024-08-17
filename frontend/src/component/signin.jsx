@@ -28,10 +28,10 @@ function SignInForm() {
                 password: password
             }, { withCredentials: true })
             if (response.status === 200) {
-                dispatch(login(email));
-                navigate("/userprofile")
                 setEmail("");
                 setPassword("");
+                dispatch(login(email));
+                navigate("/userprofile")
             }
 
         } catch (err) {

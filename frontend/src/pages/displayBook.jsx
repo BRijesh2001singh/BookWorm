@@ -13,11 +13,12 @@ import Mystery from "../component/mystery";
 import NavBar from "../component/navBar";
 import Allbooks from "../component/allbooks";
 import Loading from "../component/loading";
+import Footer from "../component/footer";
 const Displaybooks = () => {
     const dispatch = useDispatch();
     const { isLoading } = useSelector((state) => state.books);
     const [expbooks, setExpbooks] = useState(false);
-
+    // verify token
     // Fetch books when the component mounts or when store data changes
     useEffect(() => {
         dispatch(getBooks());
@@ -60,7 +61,7 @@ const Displaybooks = () => {
                     <Mystery />
                     {/* horror books section*/}
                     <Horror />
-
+                    <Footer />
                 </>
             )
             }
