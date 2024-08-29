@@ -55,7 +55,7 @@ const Addbook = () => {
                 <ToastContainer />
                 <div className='addbooks container'>
                     <h1 className='text-white'>Enter Book details</h1>
-                    <h6 className='text-white'>Please make sure book details are correct before submiting</h6>
+                    <h6 className='text-white'>Please make sure book details are correct before submiting.</h6>
                     <form>
                         <div className="form-group text-white">
                             <label>BookName</label>
@@ -92,7 +92,7 @@ const Addbook = () => {
                             </select>
                         </div>
                         <h6 style={{ color: "red" }}>{error}</h6>
-                        <button type="submit" className="btn btn-primary mt-2" onClick={submit}>Submit</button>
+                        <button type="submit" className="btn btn-primary mt-2" style={{ backgroundColor: "#d34917", border: "none" }} onClick={submit}>Submit</button>
                     </form>
                 </div>
             </div>

@@ -9,7 +9,9 @@ const Bookreview = ({ currId, checkreview }) => {
     useEffect(() => {
         const getreview = async () => {
             const res = await axios(`${apiURL}/api/v1/reviews/${currId}`);
-            setUserReview(res.data);
+            const reviews = res.data;
+            reviews.reverse();//to add the most recent comment to top
+            setUserReview(reviews);
             if (res.status === 404) {
                 console.log("No reviews Found");
             }
