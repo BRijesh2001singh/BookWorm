@@ -82,7 +82,7 @@ const Addbook = () => {
                             <input type="number" className="form-control" id="Price" aria-describedby="emailHelp" placeholder="Enter Price" name="price" onChange={change} value={Data.price} />
                         </div>
                         <div className="form-group text-white my-2">
-                            <label >Tag</label>
+                            <label className='mx-1' >Tag</label>
                             <select className='horizontal-dropdown' name="tags" onChange={change} value={Data.tags}>
                                 {genres.map((item, index) =>
 

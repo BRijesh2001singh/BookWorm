@@ -30,6 +30,11 @@
   background: #000000;
 }
 
+/* //allbooks */
+.allBook {
+  background-image: url(./images/bg.avif);
+}
+
 .container {
   display: flex;
   flex-direction: column;

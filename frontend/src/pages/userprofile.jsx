@@ -12,13 +12,13 @@ import dp2 from "../assets/profile/dp2.jpg";
 import dp3 from "../assets/profile/dp3.jpg";
 import getName from '../helper/getUserId';
 import Cookies from 'js-cookie';
+let rindex = Math.floor(Math.random() * 3);
 const Profile = () => {
     let dp = [
         dp1,
         dp2,
         dp3
     ]
-    let rindex = Math.floor(Math.random() * 3);
     const [userName, setUserName] = useState("Guest");
     const [userEmail, setUserEmail] = useState("Guest");
     const { user, username, isAuthenticated } = useSelector((state) => state.auth);

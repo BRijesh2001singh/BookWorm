@@ -82,7 +82,7 @@ const Allbooks = ({ setcheck }) => {
         }
     }
     return (
-        <div className="outer-container">
+        <div className="outer-container ">
             <h1 style={{ color: "white", marginTop: "2rem" }}>Explore All Books</h1>
             <div className="filter-books" >
 
@@ -100,7 +100,7 @@ const Allbooks = ({ setcheck }) => {
                     onClick={() => setcheck(false)}
                 >Go Back</button>
             </div>
-            <div className="main-book-container">
+            <div className="main-book-container allBook">
                 {
                     bookList && bookList.map((item, index) => (
                         <div className='mb-2 box mx-3 mx-4 book-container' key={index}>
