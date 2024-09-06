@@ -9,16 +9,16 @@ function NavBar() {
     const { isAuthenticated } = useSelector((state) => state.auth);
     return (
         <header className='nav-bar'>
-            <h1 onClick={() => navigate("/")}
+            <h1 onClick={() => navigate("/home")}
                 className='nav-heading'
             ><img style={{
                 width: "60px",
-                height: "60px"
+                height: "60px",
             }} src={worm} />BookWorm</h1>
             <nav>
                 <ul className='nav-content-box'>
                     <li className='nav-content'>
-                        <NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/">Books</NavLink>
+                        <NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/home">Books</NavLink>
                         <NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/addbook">Add books</NavLink>
                         {isAuthenticated ? (<NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/userprofile">Profile
                             <FontAwesomeIcon style={{ marginLeft: ".5rem" }} icon={faUser} />

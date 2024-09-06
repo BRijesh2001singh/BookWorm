@@ -62,7 +62,7 @@ const Favbooks = () => {
                     <div key={item._id} className="fav-content">
                         <span>{item.bookname} by <b>{item.author}</b> </span>
                         <button className="mx-2" style={{
-                            color: "#f46725",
+                            color: "#5924c1",
                             fontWeight: "bold",
                             textDecoration: "underline"
                         }} title="View" onClick={() => navigate(`/detail/${item._id}`)}>View</button>

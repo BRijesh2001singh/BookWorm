@@ -28,7 +28,7 @@ const Recommendation = () => {
                             <h6 style={{ fontSize: "15px", fontWeight: "bold", color: "white" }} className=' my-1 px-2'>{item.bookname.slice(0, 20)}...</h6>
                             <p className='mb-0 text-white' style={{ fontSize: "30px", fontWeight: "bold" }}>Rs. {item.price}</p>
                             <button style={{
-                                backgroundColor: "#f46725", color: "white", border: "none", fontWeight: "bold"
+                                backgroundColor: "#5924c1", color: "white", border: "none", fontWeight: "bold"
                                 , borderRadius: "5px"
                             }} className='reads-btn btn btn-primary my-1' onClick={() => navigate(`/detail/${item._id}`)}>View Details</button>
                         </div>

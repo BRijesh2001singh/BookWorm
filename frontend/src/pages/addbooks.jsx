@@ -43,7 +43,7 @@ const Addbook = () => {
             console.log(error);
         }
     }
-    const genres = ["None", "Fiction", "Non-fiction", "Sci-Fi", "Fantasy", "Romance", "Horror", "Educational", "History", "Autobiography", "Comedy", "Adventure", "Mystery"]
+    const genres = ["None", "Fiction", "Non-fiction", "Sci-Fi", "Fantasy", "Romance", "Horror", "Educational", "History", "Autobiography", "Comedy", "Adventure", "Mystery", "Recipes", "Religious"]
     useEffect(() => {
         seterror("");
     }, [Data.bookname, Data.description, Data.author, Data.image, Data.tags])//removing error msg as soon as user changes any input fields
@@ -52,7 +52,20 @@ const Addbook = () => {
         <>
             <NavBar />
             <div className='addbooksbg container-fluid d-flex justify-content-center allign-items-center'>
-                <ToastContainer />
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss={false}
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                    transition:Flip
+                />
+
                 <div className='addbooks container'>
                     <h1 className='text-white'>Enter Book details</h1>
                     <h6 className='text-white'>Please make sure book details are correct before submiting.</h6>
@@ -92,7 +105,7 @@ const Addbook = () => {
                             </select>
                         </div>
                         <h6 style={{ color: "red" }}>{error}</h6>
-                        <button type="submit" className="btn btn-primary mt-2" style={{ backgroundColor: "#d34917", border: "none" }} onClick={submit}>Submit</button>
+                        <button type="submit" className="btn btn-primary mt-2" style={{ backgroundColor: "#5924c1", border: "none" }} onClick={submit}>Submit</button>
                     </form>
                 </div>
             </div>

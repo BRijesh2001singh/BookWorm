@@ -33,7 +33,7 @@ const Allbooks = ({ setcheck }) => {
     }
     useEffect(() => {
     }, [selectedgenre]);
-    const genres = ["All", "Fiction", "Non-fiction", "Sci-Fi", "Fantasy", "Romance", "Horror", "Educational", "History", "Autobiography", "Comedy", "Adventure", "Mystery"];
+    const genres = ["All", "Fiction", "Non-fiction", "Sci-Fi", "Fantasy", "Romance", "Horror", "Educational", "History", "Autobiography", "Comedy", "Adventure", "Mystery", "Recipes", "Religious"];
     //favbooks code start from here
     //check if book is in fav list
     //get favbook from store
@@ -116,7 +116,7 @@ const Allbooks = ({ setcheck }) => {
                             <p className='mb-0 text-white' style={{ fontSize: "30px", fontWeight: "bold" }}>Rs. {item.price}</p>
                             <div className='d-flex justify-content-around align-items-center flex-wrap py-1'>
                                 <button style={{
-                                    backgroundColor: "#f46725", color: "white", border: "none", fontWeight: "bold"
+                                    backgroundColor: "#5924c1", color: "white", border: "none", fontWeight: "bold"
                                     , borderRadius: "5px"
                                 }} className='reads-btn btn btn-primary my-1' onClick={() => navigate(`/detail/${item._id}`)}>View Details</button>
                                 {isBookInFav(item._id) ? <button className='btn ' style={{ backgroundColor: "transparent" }}>

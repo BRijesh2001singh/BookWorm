@@ -52,7 +52,7 @@ const Profile = () => {
         if (check) {
             dispatch(logout());
             Cookies.remove("uuid")
-            navigate("/");
+            navigate("/home");
         }
         else {
             return;

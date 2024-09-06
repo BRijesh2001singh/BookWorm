@@ -52,52 +52,54 @@ const ViewDetails = () => {
         }
     }
     return (
-        <div className="book-view-container">
-            <ToastContainer />
-            <NavBar />
-            {currBook ? (
-                <>
-                    <div className="book-view-content">
-                        <img src={currBook.image} alt={currBook.title} /> {/* Ensure currBook.image and currBook.title are valid */}
-                        <span><b>Author:{currBook.author}</b></span>
-                        <button style={{ backgroundColor: "#d34917", color: "white", border: "none", borderRadius: "5px" }}
-                            onClick={() => ebook(currBook.readonline)}
-                        >
-                            Read Online
-                        </button>
-                        <h4>{currBook.bookname}</h4>
-                        <p>{currBook.description}</p>
-                    </div>
-                    <div className="book-review">
-                        <h1 className="px-2">Book Reviews</h1>
-                        <button className="mx-3 my-2" style={{ backgroundColor: "#d34917", color: "white", border: "none", borderRadius: "5px" }}
-                            onClick={(() => handleClick())}
-                        >
-                            {check ? "Cancel ❌" : "Add Review +"}
-                        </button>
-                        <div>
-                            <textarea placeholder={newReview === "" ? ("Reminder:Please be respectful and constructive and avoid using language that could be hurtful or negative") : ("")} style={{
-                                width: "50vw",
-                                height: "20vh",
-                                display: check ? "block" : "none"
-                            }} className="review-box mx-3" type="text" value={newReview} onChange={(e) => setNewReview(e.target.value)} />
-                            <button className="post mx-3 my-1" style={{
-                                backgroundColor: "#d34917", border: "none",
-                                borderRadius: "5px", color: "white",
-                                display: check ? "block" : "none"
-                            }} onClick={() => postReview(currBook._id)}>Post ▶</button>
-
+        <>
+            <div className="book-view-container">
+                <ToastContainer />
+                <NavBar />
+                {currBook ? (
+                    <>
+                        <div className="book-view-content">
+                            <img src={currBook.image} alt={currBook.title} /> {/* Ensure currBook.image and currBook.title are valid */}
+                            <span><b>Author:{currBook.author}</b></span>
+                            <button style={{ backgroundColor: "#5924c1", color: "white", border: "none", borderRadius: "5px" }}
+                                onClick={() => ebook(currBook.readonline)}
+                            >
+                                Read Online
+                            </button>
+                            <h4>{currBook.bookname}</h4>
+                            <p>{currBook.description}</p>
                         </div>
-                        <div>
-                            <Bookreview currId={currBook._id} checkreview={showreview} />
-                        </div>
-                    </div>
-                </>
+                        <div className="book-review">
+                            <h1 className="px-2">Book Reviews</h1>
+                            <button className="mx-3 my-2" style={{ backgroundColor: "#5924c1", color: "white", border: "none", borderRadius: "5px" }}
+                                onClick={(() => handleClick())}
+                            >
+                                {check ? "Cancel ❌" : "Add Review +"}
+                            </button>
+                            <div>
+                                <textarea placeholder={newReview === "" ? ("Reminder:Please be respectful and constructive and avoid using language that could be hurtful or negative") : ("")} style={{
+                                    width: "50vw",
+                                    height: "20vh",
+                                    display: check ? "block" : "none"
+                                }} className="review-box mx-3" type="text" value={newReview} onChange={(e) => setNewReview(e.target.value)} />
+                                <button className="post mx-3 my-1" style={{
+                                    backgroundColor: "#5924c1", border: "none",
+                                    borderRadius: "5px", color: "white",
+                                    display: check ? "block" : "none"
+                                }} onClick={() => postReview(currBook._id)}>Post ▶</button>
 
-            ) : (
-                <Loading /> // Handle loading state
-            )}
-        </div>
+                            </div>
+                            <div>
+                                <Bookreview currId={currBook._id} checkreview={showreview} />
+                            </div>
+                        </div>
+                    </>
+
+                ) : (
+                    <Loading /> // Handle loading state
+                )}
+            </div>
+        </>
     )
 }
 
