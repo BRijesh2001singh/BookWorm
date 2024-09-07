@@ -13,6 +13,7 @@ import ViewDetails from './pages/viewDetail.jsx';
 import Profile from './pages/userprofile.jsx';
 import Intro from './component/intro.jsx';
 import Hordingbooks from './pages/hordingbooks.jsx';
+import Authors from './pages/authors.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "/addbook", element: <Addbook /> },
       { path: "/detail/:id", element: <ViewDetails /> },
       { path: "/banner/:type", element: <Hordingbooks /> },
+      { path: "/authordetails/:name", element: <Authors /> },
       { path: "*", element: <NotFound /> },
     ],
   },

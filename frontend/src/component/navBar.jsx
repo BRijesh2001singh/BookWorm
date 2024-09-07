@@ -3,7 +3,7 @@ import "../App.css"
 import { useSelector } from 'react-redux';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import worm from '../images/bg.png';
+import booknav from '../images/booknavic.png';
 function NavBar() {
     const navigate = useNavigate();
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -11,10 +11,14 @@ function NavBar() {
         <header className='nav-bar'>
             <h1 onClick={() => navigate("/home")}
                 className='nav-heading'
+                style={{
+                    fontFamily: "sans-serif",
+                    fontWeight: "bolder"
+                }}
             ><img style={{
                 width: "60px",
                 height: "60px",
-            }} src={worm} />BookWorm</h1>
+            }} src={booknav} />BookWorm</h1>
             <nav>
                 <ul className='nav-content-box'>
                     <li className='nav-content'>

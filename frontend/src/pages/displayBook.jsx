@@ -18,6 +18,7 @@ import reimg from "../images/rebg1.jpg"
 import { useNavigate } from "react-router-dom";
 import best from "../images/bestbookbg.jpg";
 import chacha from "../images/chachbg.jpg";
+import Authordisplay from "../component/authordisplay";
 const Displaybooks = () => {
     const dispatch = useDispatch();
     const { isLoading } = useSelector((state) => state.books);
@@ -73,6 +74,7 @@ const Displaybooks = () => {
                         <Fiction />
                         {/* Mystery books section*/}
                         <Mystery />
+                        <Authordisplay />
                         {/* horror books section*/}
                         <Horror />
                         <Footer />
