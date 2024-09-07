@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../component/loading";
 import NavBar from "../component/navBar";
 import ebook from "../helper/ebook";
-import Bookreview from "../component/bookreview";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+// Lazy load the Bookreview component
+const Bookreview = lazy(() => import("../component/bookreview"));
+
 const ViewDetails = () => {
     const apiURL = import.meta.env.VITE_APP_API_URL;
     const { id } = useParams();
@@ -16,26 +19,33 @@ const ViewDetails = () => {
     const [check, setCheck] = useState(false);
     const { userid } = useSelector((state) => state.auth);
     const [showreview, setShowReview] = useState("No Post");
+    const [shouldLoadReview, setShouldLoadReview] = useState(false); // Control for lazy loading review component
+
     useEffect(() => {
         const getBook = async () => {
             try {
                 const res = await axios.get(`${apiURL}/api/v1/get/${id}`);
                 setCurrBook(res.data.book);
+
+                // Delay loading Bookreview component
+                setTimeout(() => {
+                    setShouldLoadReview(true); // Trigger the review load after other content
+                }, 1000); // Delay by 1 second or adjust accordingly
             } catch (error) {
                 console.log(error);
             }
-        }
+        };
         getBook();
-    }, [id])
-    //handle review post
+    }, [id]);
+
     const handleClick = () => {
         if (!userid) {
-            alert("Please Login to add reviews")
+            alert("Please Login to add reviews");
             return;
         }
         setCheck(!check);
-    }
-    //post review
+    };
+
     const postReview = async (id) => {
         try {
             const res = await axios.post(`${apiURL}/api/v1/${userid}/addreview/${id}`, {
@@ -50,17 +60,30 @@ const ViewDetails = () => {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
     return (
         <>
             <div className="book-view-container">
-                <ToastContainer />
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss={false}
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
+
                 <NavBar />
                 {currBook ? (
                     <>
                         <div className="book-view-content">
-                            <img src={currBook.image} alt={currBook.title} /> {/* Ensure currBook.image and currBook.title are valid */}
-                            <span><b>Author:{currBook.author}</b></span>
+                            <img src={currBook.image} alt={currBook.title} />
+                            <span><b>Author: {currBook.author}</b></span>
                             <button style={{ backgroundColor: "#5924c1", color: "white", border: "none", borderRadius: "5px" }}
                                 onClick={() => ebook(currBook.readonline)}
                             >
@@ -72,12 +95,12 @@ const ViewDetails = () => {
                         <div className="book-review">
                             <h1 className="px-2">Book Reviews</h1>
                             <button className="mx-3 my-2" style={{ backgroundColor: "#5924c1", color: "white", border: "none", borderRadius: "5px" }}
-                                onClick={(() => handleClick())}
+                                onClick={handleClick}
                             >
                                 {check ? "Cancel ❌" : "Add Review +"}
                             </button>
                             <div>
-                                <textarea placeholder={newReview === "" ? ("Reminder:Please be respectful and constructive and avoid using language that could be hurtful or negative") : ("")} style={{
+                                <textarea placeholder={newReview === "" ? ("Reminder: Please be respectful and constructive and avoid using language that could be hurtful or negative") : ("")} style={{
                                     width: "50vw",
                                     height: "20vh",
                                     display: check ? "block" : "none"
@@ -87,20 +110,21 @@ const ViewDetails = () => {
                                     borderRadius: "5px", color: "white",
                                     display: check ? "block" : "none"
                                 }} onClick={() => postReview(currBook._id)}>Post ▶</button>
-
                             </div>
-                            <div>
-                                <Bookreview currId={currBook._id} checkreview={showreview} />
-                            </div>
+                            {/* Lazy load Bookreview after main content */}
+                            {shouldLoadReview && (
+                                <Suspense fallback={<Loading />}>
+                                    <Bookreview currId={currBook._id} checkreview={showreview} />
+                                </Suspense>
+                            )}
                         </div>
                     </>
-
                 ) : (
-                    <Loading /> // Handle loading state
+                    <Loading />
                 )}
             </div>
         </>
-    )
-}
+    );
+};
 
 export default ViewDetails;

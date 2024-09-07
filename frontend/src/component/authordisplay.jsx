@@ -44,12 +44,10 @@ const Authordisplay = () => {
                     textShadow: "0px 4px 5px black"
                 }}>Know Your Favourite Authors</h1>
                 {author.map((items, index) => (
-                    <>
-                        <div className="auth-details" key={index}>
-                            <img src={items.img} onClick={() => navigate(`/authordetails/${items.name}`)} />
-                            <span>{items.name}</span>
-                        </div>
-                    </>
+                    <div className="auth-details" key={index}>
+                        <img src={items.img} onClick={() => navigate(`/authordetails/${items.name}`)} />
+                        <span>{items.name}</span>
+                    </div>
                 ))}
             </div>
         </>
