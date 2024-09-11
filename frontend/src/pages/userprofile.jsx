@@ -27,7 +27,7 @@ const Profile = () => {
     //if user is not present redirect to books
     if (!user && !isAuthenticated) {
         console.log("user not present")
-        navigate("/");
+        navigate("/home");
     }
     useEffect(() => {
         setUserEmail(user);
