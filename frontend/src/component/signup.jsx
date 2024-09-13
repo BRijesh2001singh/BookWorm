@@ -44,7 +44,19 @@ const SignUpForm = () => {
 
     return (
         <div className="sign-up-container">
-            <ToastContainer />
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition:Flip
+            />
             <form onSubmit={createuser}>
                 <h1 className='signh'>Create Account</h1>
                 <input type='text' name="name" value={username} placeholder="Name" onChange={(e) => setusername(e.target.value)} />

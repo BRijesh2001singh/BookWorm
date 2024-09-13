@@ -57,7 +57,7 @@ function SignInForm() {
                 <input
                     autoComplete='username'
                     type="email"
-                    placeholder="Email"
+                    placeholder="demo@gmail.com"
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -67,7 +67,7 @@ function SignInForm() {
                     autoComplete='current-password'
                     type={userPassword ? "text" : "password"}
                     name="password"
-                    placeholder="Password"
+                    placeholder="demo@789"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />

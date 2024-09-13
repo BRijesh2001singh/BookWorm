@@ -55,7 +55,19 @@ const Favbooks = () => {
     };
     return (
         <div className="fav-container">
-            <ToastContainer />
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition:Flip
+            />
             <h4>Favourite Books</h4>
             {favbook ? (
                 favbook.map((item) => (
