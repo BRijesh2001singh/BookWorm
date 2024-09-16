@@ -19,7 +19,9 @@ import { useNavigate } from "react-router-dom";
 import best from "../images/bestbookbg.jpg";
 import chacha from "../images/chachbg.jpg";
 import Authordisplay from "../component/authordisplay";
+import useAuth from "../hooks/verifyUser";
 const Displaybooks = () => {
+    useAuth();
     const dispatch = useDispatch();
     const { isLoading } = useSelector((state) => state.books);
     const [expbooks, setExpbooks] = useState(false);

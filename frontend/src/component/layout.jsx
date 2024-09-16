@@ -1,11 +1,22 @@
-import { Outlet } from 'react-router-dom';
-import useTokenCheck from '../hooks/tokencheck';
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { login } from '../redux/slices/userAuth';
+import { useDispatch } from 'react-redux';
+// import useTokenCheck from '../hooks/tokencheck';
 const Layout = () => {
-    useTokenCheck(); // Call the custom hook here
-
+    // useTokenCheck();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    useEffect(() => {
+        const email = localStorage.getItem('email');
+        if (email) {
+            navigate("/home")
+            dispatch(login(email));
+        }
+    }, [])
     return (
         <div>
-            <Outlet /> {/* This will render the matched child route component */}
+            <Outlet />
         </div>
     );
 };

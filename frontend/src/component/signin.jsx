@@ -14,6 +14,7 @@ function SignInForm() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const [userPassword, setUserPassword] = useState(false);
+    const [remember, setRemember] = useState(false);
     const apiURL = import.meta.env.VITE_APP_API_URL;
     const dispatch = useDispatch();
     const signin = async (e) => {
@@ -28,6 +29,9 @@ function SignInForm() {
                 password: password
             }, { withCredentials: true })
             if (response.status === 200) {
+                if (remember) {
+                    localStorage.setItem('email', email);
+                }
                 setEmail("");
                 setPassword("");
                 dispatch(login(email));
@@ -46,6 +50,12 @@ function SignInForm() {
         }
 
     }
+    const handlecheck = (e) => {
+        if (e.target.checked) {
+            setRemember(true);
+        }
+        else setRemember(false);
+    }
     useEffect(() => {
         setError("");
     }, [email, password]);
@@ -55,7 +65,7 @@ function SignInForm() {
             <form onSubmit={signin}>
                 <h1 className='signh'>Sign in</h1>
                 <input
-                    autoComplete='username'
+                    autoComplete='current-email'
                     type="email"
                     placeholder="demo@gmail.com"
                     name="email"
@@ -73,6 +83,10 @@ function SignInForm() {
                 />
                 <button type='button' onClick={() => setUserPassword(!userPassword)}><FontAwesomeIcon icon={faEye} /></button>
                 <span className='error-msg'>{error}</span>
+                <div className="remember_me">
+                    <input type='checkbox' onChange={(e) => handlecheck(e)} /><span>Remember me.</span>
+                </div>
+
                 <button type='submit'>Sign In</button>
             </form>
         </div>

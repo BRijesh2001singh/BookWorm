@@ -3,7 +3,9 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import NavBar from '../component/navBar';
+import useAuth from '../hooks/verifyUser';
 const Addbook = () => {
+    useAuth();
     const apiURL = import.meta.env.VITE_APP_API_URL;
     const { userid, isAuthenticated } = useSelector((state) => state.auth);
     const [error, seterror] = useState("");
