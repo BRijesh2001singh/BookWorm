@@ -9,8 +9,10 @@ const SignUpForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [singupLoader, setsignupLoader] = useState(false);
     const apiURL = import.meta.env.VITE_APP_API_URL;
     const createuser = async (e) => {
+        setsignupLoader(true);
         e.preventDefault();
         if (email.length === 0 || password.length === 0) {
             setError("Email or Password cannot be empty.")
@@ -24,6 +26,7 @@ const SignUpForm = () => {
             });
 
             if (response.status === 200) {
+                setsignupLoader(false);
                 console.log("success");
                 setusername("");
                 setEmail("");
@@ -73,7 +76,8 @@ const SignUpForm = () => {
                     placeholder="Create new Password"
                 />
                 <span className='error-msg'>{error}</span>
-                <button type='submit'>Sign Up</button>
+                {singupLoader ? <div className='signin-loader'></div> : <button type='submit'>Sign Up</button>}
+
             </form>
         </div>
     );

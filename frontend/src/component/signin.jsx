@@ -17,8 +17,10 @@ function SignInForm() {
     const [remember, setRemember] = useState(false);
     const apiURL = import.meta.env.VITE_APP_API_URL;
     const dispatch = useDispatch();
+    const [loader, setLoader] = useState(false);
     const signin = async (e) => {
         e.preventDefault();
+        setLoader(true);
         if (email.length === 0 || password.length === 0) {
             setError("Email or Password Cannot be empty.");
             return null;
@@ -29,6 +31,7 @@ function SignInForm() {
                 password: password
             }, { withCredentials: true })
             if (response.status === 200) {
+                setLoader(false);
                 if (remember) {
                     localStorage.setItem('email', email);
                 }
@@ -87,7 +90,7 @@ function SignInForm() {
                     <input type='checkbox' onChange={(e) => handlecheck(e)} /><span>Remember me.</span>
                 </div>
 
-                <button type='submit'>Sign In</button>
+                {loader ? <div className='signin-loader'></div> : <button type='submit'>Sign-In</button>}
             </form>
         </div>
     );
