@@ -1320,3 +1320,34 @@ nav>ul>li {
   margin-top: .5rem;
   opacity: .7;
 }
+
+.blog-loader {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  color: whitesmoke;
+}
+
+.blog-spinner {
+  height: 30px;
+  width: 30px;
+  border: 5px dotted rgb(132, 0, 233);
+  border-left: 5px dotted rgb(235, 235, 235);
+  border-right: 5px dotted rgb(235, 235, 235);
+  border-radius: 50%;
+  animation: blog-spinner 2s linear infinite;
+  margin-left: 1rem;
+}
+
+@keyframes blog-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -31,6 +31,7 @@ const BlogList = ({ allblogs, status, setBlog, update }) => {
     const postBlog = async () => {
         if (!isAuthenticated || title === "" || blogData === "" || tag === "") {
             toast.error("All fields are required!");
+            return;
         }
         try {
 
