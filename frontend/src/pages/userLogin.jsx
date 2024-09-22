@@ -11,6 +11,7 @@ export default function Userlogin() {
         <>
 
             <div className="login-container">
+                <div className="stars-bg"></div>
                 <div id="container">
                     <div className={`flip-card ${check ? "" : "flipped"}`}>
                         <div className="flip-card-front">

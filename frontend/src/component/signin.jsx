@@ -43,10 +43,12 @@ function SignInForm() {
 
         } catch (err) {
             if (err.response.status === 404) {
+                setLoader(false);
                 setError("⚠Email Not registered");
                 return;
             }
             else if (err.response.status === 401) {
+                setLoader(false);
                 setError("⚠Wrong Password");
                 return;
             }

@@ -23,6 +23,7 @@ function NavBar() {
                 <ul className='nav-content-box'>
                     <li className='nav-content'>
                         <NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/home">Books</NavLink>
+                        <NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/blogs">Blogs</NavLink>
                         <NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/addbook">Add books</NavLink>
                         {isAuthenticated ? (<NavLink className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'} to="/userprofile">Profile
                             <FontAwesomeIcon style={{ marginLeft: ".5rem" }} icon={faUser} />
