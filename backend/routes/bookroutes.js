@@ -262,10 +262,8 @@ router.get("/readblogs", async (req, res) => {
       if (!allblogs.length) {
         return res.status(404).json({ message: 'No blogs found' });
       }
-      else {
-        await redis.set('blogs', JSON.stringify(allblogs), 'EX', 300);
-        res.json(allblogs);
-      }
+      await redis.set('blogs', JSON.stringify(allblogs), 'EX', 300);
+      return res.json({ blogs: allblogs });
     }
   } catch (error) {
     console.log(error);
