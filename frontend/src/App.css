@@ -89,7 +89,7 @@ button:hover {
 /* banners */
 .banners {
   margin-top: 1rem;
-  width: 95vw;
+  width: 96vw;
   height: 65vh;
   margin-bottom: 2rem;
   background-color: rgb(225, 222, 222);
@@ -97,12 +97,11 @@ button:hover {
   display: flex;
   flex-direction: row;
   padding: 2rem;
-  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/042/595/754/small_2x/ai-generated-dark-minimal-nature-scene-in-boho-style-photo.jpg");
+  background-image: url("./assets/bannerpic/banbg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 15px;
-
 }
 
 .banner-img {

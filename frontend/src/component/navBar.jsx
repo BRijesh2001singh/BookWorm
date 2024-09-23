@@ -18,7 +18,7 @@ function NavBar() {
             ><img style={{
                 width: "60px",
                 height: "60px",
-            }} src={booknav} />BookWorm</h1>
+            }} src={booknav} />Book<span style={{ color: "lightseagreen", textShadow: "none" }}>Worm</span></h1>
             <nav>
                 <ul className='nav-content-box'>
                     <li className='nav-content'>
