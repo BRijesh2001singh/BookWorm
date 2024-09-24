@@ -28,8 +28,8 @@ const Intro = () => {
                 </div>
                 <div className="info-block-2">
                     <img style={{ width: "30%", height: "50%" }}
-                        src={bookmark} /><h2>YourFavourite</h2>
-                    <span>Bookmark your favorite books and read them later. You can also add reviews to share your thoughts.</span>
+                        src={bookmark} /><h2>Blogs</h2>
+                    <span>Discover and share your voice with ease—write blogs and explore others &#39; stories on our dynamic platform</span>
                 </div>
 
             </div>

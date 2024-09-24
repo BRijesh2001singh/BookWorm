@@ -68,7 +68,7 @@ function SignInForm() {
     return (
         <div className="sign-in-container">
             <form onSubmit={signin}>
-                <h1 className='signh'>Sign in</h1>
+                <h1 className='signh'>Sign-In</h1>
                 <input
                     autoComplete='current-email'
                     type="email"

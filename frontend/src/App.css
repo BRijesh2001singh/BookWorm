@@ -67,6 +67,7 @@ button:hover {
   flex-wrap: wrap;
   background-color: rgb(11, 11, 11);
   padding: 1rem;
+  margin-left: 0px;
 }
 
 .book-container {
@@ -194,6 +195,92 @@ button:hover {
 
 }
 
+/* Large tablets and smaller */
+@media screen and (max-width: 1100px) {
+  .banners {
+    flex-direction: column;
+    height: auto;
+    padding: 1.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slides {
+    display: none;
+
+  }
+
+  .banner-img {
+    width: 20%;
+    /* Reduced size */
+    height: auto;
+    margin: 0 auto;
+    transform: rotate(0deg);
+    /* Set rotation to zero */
+  }
+
+  .banner-title {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .banner-title>h1 {
+    font-size: 60px;
+  }
+
+  .banner-title>h4 {
+    font-size: 20px;
+  }
+}
+
+/* Tablets and smaller */
+@media screen and (max-width: 768px) {
+  .banners {
+    padding: 1rem;
+  }
+
+  .banner-img {
+    width: 50%;
+    /* Reduced size */
+    height: auto;
+    transform: rotate(0deg);
+    /* Set rotation to zero */
+  }
+
+  .banner-title>h1 {
+    font-size: 50px;
+  }
+
+  .banner-title>h4 {
+    font-size: 18px;
+  }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 480px) {
+  .banners {
+    padding: 0.5rem;
+  }
+
+  .banner-title>h1 {
+    font-size: 40px;
+  }
+
+  .banner-title>h4 {
+    font-size: 16px;
+  }
+
+  .banner-img {
+    width: 30%;
+    /* Further reduced size */
+    height: auto;
+    transform: rotate(0deg);
+    /* Set rotation to zero */
+  }
+}
+
 /* testing  */
 
 /* testing */
@@ -285,7 +372,16 @@ input#img-8:checked~.nav-dots label#img-dot-8 {
   border: 1px solid #5824c149;
   padding: 10px;
   border-radius: 5px;
+  width: 100%;
+  height: 100%;
 }
+
+.re-book-cover {
+  width: 100%;
+  height: 100%;
+}
+
+
 
 .re-book-cover>img {
   transform: scale(.9);
@@ -325,8 +421,8 @@ input#img-8:checked~.nav-dots label#img-dot-8 {
 }
 
 .series-book-img>img {
-  width: 400px;
-  height: 300px;
+  width: 95%;
+  height: 80%;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transform: scale(1);
@@ -346,7 +442,7 @@ input#img-8:checked~.nav-dots label#img-dot-8 {
   width: 100%;
   margin-right: 4rem;
   flex-wrap: wrap;
-  margin-top: 2rem;
+
 }
 
 .edu-book-container>h3 {
@@ -401,7 +497,7 @@ input#img-8:checked~.nav-dots label#img-dot-8 {
 
 }
 
-/* navbar */
+/* Navbar */
 .nav-bar {
   display: flex;
   width: 100vw;
@@ -414,17 +510,13 @@ input#img-8:checked~.nav-dots label#img-dot-8 {
   padding-left: 4rem;
   padding-right: 4rem;
   padding-top: 1rem;
-
 }
 
 ul {
   list-style-type: none;
   padding: 0;
-  /* Optional: Remove default padding */
   margin: 0;
-  /* Optional: Remove default margin */
 }
-
 
 nav>ul>li {
   text-decoration: none;
@@ -463,11 +555,62 @@ nav>ul>li {
 
 .nav-bar>h1 {
   text-shadow: 0px 2px 10px rgba(255, 255, 255, 0.61);
-
 }
 
 .nav-content>a:hover {
   color: #7143cd;
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 1024px) {
+  .nav-bar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 8vh;
+  }
+
+  .nav-content {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    padding: 1rem;
+    z-index: 10;
+  }
+
+  .show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    padding: 1rem;
+    z-index: 10;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-content>a {
+    margin: 0.5rem 0;
+    font-size: large;
+    text-align: center;
+    /* Center text */
+  }
 }
 
 /* userProfile styles */
@@ -477,7 +620,9 @@ nav>ul>li {
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 100vw;
+  height: 100%;
+  overflow-y: scroll;
+  position: relative;
   background-color: rgb(11, 11, 11);
   margin-top: 2rem;
   background-image: url('./images/bg.avif');
@@ -573,6 +718,72 @@ nav>ul>li {
 
 .user-added-info {
   overflow-y: scroll;
+}
+
+@media only screen and (max-width: 1200px) {
+  .user-board {
+    width: 30vw;
+  }
+
+  .user-book-info {
+    width: 60vw;
+  }
+
+  .user-added-info,
+  .user-fav-info {
+    width: 48%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .user-board {
+    width: 40vw;
+  }
+
+  .user-book-info {
+    width: 80vw;
+    flex-direction: column;
+  }
+
+  .user-added-info,
+  .user-fav-info {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .user-profile {
+    height: auto;
+    margin-top: 1rem;
+  }
+
+  .user-board {
+    width: 50vw;
+  }
+
+  .user-book-info {
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .user-board {
+    width: 80vw;
+  }
+
+  .user-board-info>img {
+    height: 30%;
+  }
+
+  .user-book-info {
+    width: 100vw;
+  }
+
+  .fav-content {
+    flex-direction: column;
+  }
 }
 
 /* loading styles */
@@ -1024,6 +1235,98 @@ nav>ul>li {
   transform: rotateY(-180deg);
 }
 
+@media only screen and (max-width: 1200px) {
+  .info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+  }
+
+  .intro-btns {
+    margin-bottom: .5rem;
+  }
+
+  .info-block-1,
+  .info-block-2 {
+    width: 45%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+
+  }
+
+  .info-block-2 {
+    margin-bottom: 2rem;
+  }
+
+  .info-block-img {
+    margin-left: 40rem;
+    width: 20%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .tag-line>h1 {
+    font-size: 50px;
+    margin-left: 1rem;
+  }
+
+  .info {
+    margin-right: 5rem;
+  }
+
+  .tag-line>span {
+    margin-left: 1rem;
+  }
+
+  .info-block-1,
+  .info-block-2 {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .info-block-img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .intro-container {
+    flex-direction: column;
+  }
+
+  .tag-line>h1 {
+    font-size: 40px;
+    margin-left: 1rem;
+  }
+
+  .info {
+    flex-direction: column;
+    width: 80%;
+    margin-left: 2rem;
+  }
+
+  .info-block-img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .tag-line>h1 {
+    font-size: 30px;
+  }
+
+  .tag-line>span {
+    font-size: medium;
+  }
+
+  .info-block-img {
+    display: none;
+  }
+}
+
 /* fade in out animation */
 @keyframes fadeIn {
   0% {
@@ -1086,7 +1389,7 @@ nav>ul>li {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  width: 95vw;
+  width: 95%;
   margin-left: 1rem;
   height: 50vh;
   margin-top: 2rem;
@@ -1348,5 +1651,105 @@ nav>ul>li {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.reads-btn {
+  width: 70%;
+  height: 30%;
+}
+
+@media (max-width: 640px) {
+  .year-book>img {
+    height: 50%;
+
+  }
+
+  .recommend-book-container>h3 {
+    padding-left: 2rem;
+    font-size: medium;
+  }
+
+  .re-books {
+    padding-left: 2rem;
+    overflow-y: scroll;
+  }
+
+
+  .re-book-contents {
+    width: 50%;
+    height: 50%;
+  }
+
+  .reads-btn {
+    width: 40%;
+    height: 20%;
+    background-color: transparent;
+    flex-wrap: wrap;
+  }
+
+
+
+  .re-book-cover>img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .main-book-container {
+    margin-left: 1rem;
+  }
+
+  .series-book-container>h3 {
+    margin-left: 2rem;
+  }
+
+  .edu-book-container>h3 {
+    margin-left: 2rem;
+  }
+
+  .edu-book-contents {
+    width: 50%;
+    height: 20%;
+    margin-left: 1rem;
+  }
+
+  .author-comp {
+    flex-wrap: wrap;
+    width: 90%;
+    height: 100%;
+  }
+
+  .author-comp>h1 {
+    font-size: medium;
+  }
+
+  .auth-details>span {
+    font-size: small;
+  }
+}
+
+@media (max-width:750px) {
+  .blogs-content {
+    font-size: small;
+    flex-wrap: wrap;
+
+  }
+
+  .blogs-content>span {
+    font-size: small;
+
+  }
+
+  .blog-detail {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .blog-detail>h1 {
+    font-size: large;
+  }
+
+  .blog-body {
+    width: 70vw;
   }
 }

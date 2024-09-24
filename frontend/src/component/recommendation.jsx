@@ -19,18 +19,18 @@ const Recommendation = () => {
                 {rbooks && rbooks.map((item, index) => (
                     <div className="re-book-contents" key={index}>
                         <div className="re-book-cover">
-                            <img style={{ width: "180px", height: "270px" }}
+                            <img style={{ width: "100%", height: "90%" }}
                                 src={item.image}
                                 alt="/"
                             />
                         </div>
                         <div className="re-book-info">
-                            <h6 style={{ fontSize: "15px", fontWeight: "bold", color: "white" }} className=' my-1 px-2'>{item.bookname.slice(0, 20)}...</h6>
-                            <p className='mb-0 text-white' style={{ fontSize: "30px", fontWeight: "bold" }}>Rs. {item.price}</p>
+                            <h6 style={{ fontSize: "85%", fontWeight: "bold", color: "white" }} className=' my-1 px-2'>{item.bookname.slice(0, 20)}...</h6>
+                            <p className='mb-0 text-white' style={{ fontSize: "100%", fontWeight: "bold" }}>Rs. {item.price}</p>
                             <button style={{
                                 backgroundColor: "#5924c1", color: "white", border: "none", fontWeight: "bold"
-                                , borderRadius: "5px"
-                            }} className='reads-btn btn btn-primary my-1' onClick={() => navigate(`/detail/${item._id}`)}>View Details</button>
+                                , borderRadius: "5px", width: "100%", height: "40%"
+                            }} className='reads-btn btn btn-primary my-1' onClick={() => navigate(`/detail/${item._id}`)}  >View Details</button>
                         </div>
                     </div>
                 ))}
