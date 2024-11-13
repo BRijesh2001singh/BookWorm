@@ -1761,3 +1761,13 @@ nav>ul>li {
     width: 70vw;
   }
 }
+
+.hording-book-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+}

@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../component/navBar";
+import { getBooks } from "../redux/slices/booksSlice";
 const Hordingbooks = () => {
     const { data } = useSelector((state) => state.books);
     const [rbooks, setRbooks] = useState([]);
     const { type } = useParams();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (!data) {
+            dispatch(getBooks());
+        }
+    }, [dispatch, data]);
     let heading = "";
     let displayBook = [];
     const religiousBooks = ["66db2e6cb7d86cc14d8e6bf5", "66db2f22b7d86cc14d8e6bfb", "66db30aab7d86cc14d8e6c07", "66db36c6b7d86cc14d8e6c1b"];
@@ -29,15 +37,11 @@ const Hordingbooks = () => {
             setRbooks(filteredBooks);
         }
     }, [data]);
-    const navigate = useNavigate();
     return (
-        <div className="hording-book-container" style={{ width: "100vw", height: "100vh" }} >
+        <div className="hording-book-container" >
             <NavBar />
             <h1 style={{ color: "white", marginLeft: "1rem" }}>{heading}</h1>
-            <div className="re-books" style={{
-                width: "100%", height: "100%", display: "flex", flexDirection: "column", flexWrap: "wrap",
-                justifyContent: "start", alignItems: "center",
-            }} >
+            <div className="re-books" >
                 {rbooks && rbooks.map((item, index) => (
                     <div className="re-book-contents" key={index}>
                         <div className="re-book-cover">
