@@ -7,7 +7,7 @@ const Intro = () => {
     return (
         <div className='intro-container'>
             <div className="tag-line">
-                <h1>Online BookStore For Book Enthusiast</h1>
+                <h1>BookStore For Book Enthusiast</h1>
                 <span>
                     Explore top books, connect with fellow book worms, and contribute by sharing reviews and adding new titles to our bookstore.
                 </span>
@@ -19,6 +19,7 @@ const Intro = () => {
                 </div>
                 <img className="info-block-img" src={reading} />
             </div>
+
             <div className="info">
                 <div className="info-block-1">
 
