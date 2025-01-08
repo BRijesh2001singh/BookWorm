@@ -45,7 +45,7 @@ const Slider = () => {
                     />
                     <li className="slide-container">
                         <div className="slide">
-                            <img src={image} alt={`Slide ${index + 1}`} />
+                            <img src={image} alt={`Slide ${index + 1}`}  loading="lazy"/>
                         </div>
                     </li>
                 </React.Fragment>
