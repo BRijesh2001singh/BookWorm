@@ -4,6 +4,8 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { setUserFav } from "../redux/slices/userAuth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from "axios";
+import { ToastContainer,toast } from "react-toastify";
+
 import { useNavigate } from "react-router-dom";
 const Fiction = () => {
     const ITEM_WIDTH = 300;
@@ -52,7 +54,10 @@ const Fiction = () => {
     };
     // add-to-fav
     const addtofav = async (bookid) => {
-        if (!userid) alert("Please LogIn to add favourite")
+        if (!userid){
+            toast.error("Please LogIn to add favourite");
+           return;
+           }
         const res = await axios.patch(`${apiURL}/api/v1/${userid}/addfavbook`, {
             newfavbookId: bookid
         })
@@ -77,6 +82,7 @@ const Fiction = () => {
     }
     return (
         <div className="edu-book-container">
+            <ToastContainer/>
             <h3>Fictional Books</h3>
             <div className="act-btn">
                 <button onClick={() => handleScroll(-ITEM_WIDTH)}>⮜</button>

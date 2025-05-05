@@ -5,6 +5,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { setUserFav } from "../redux/slices/userAuth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer,toast } from "react-toastify";
 const Education = () => {
     const ITEM_WIDTH = 300;
     const { data } = useSelector((state) => state.books);
@@ -12,7 +13,8 @@ const Education = () => {
     const [scrollpos, setScrollPos] = useState(0);
     const [favbook, setfavbook] = useState([]);
     const apiURL = import.meta.env.VITE_APP_API_URL;
-    const { userid, favbooks, isAuthenticated } = useSelector((state) => state.auth);
+    const { userid, favbooks } = useSelector((state) => state.auth);
+    console.log("user id",userid);
     const dispatch = useDispatch();
     const containerRef = useRef();
     const navigate = useNavigate();
@@ -54,8 +56,8 @@ const Education = () => {
 
     // add-to-fav
     const addtofav = async (bookid) => {
-        if (!isAuthenticated) {
-            alert("Please LogIn to add favourite")
+        if (!userid) {
+            toast.error("Please LogIn to add favourite");
             return;
         }
         const res = await axios.patch(`${apiURL}/api/v1/${userid}/addfavbook`, {
@@ -81,6 +83,7 @@ const Education = () => {
     }
     return (
         <div className="edu-book-container">
+            <ToastContainer/>
             <h3>Educational Books</h3>
             <div className="act-btn">
                 <button onClick={() => handleScroll(-ITEM_WIDTH)}>⮜</button>

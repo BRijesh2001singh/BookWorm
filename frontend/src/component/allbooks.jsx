@@ -8,6 +8,7 @@ import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { setUserFav } from "../redux/slices/userAuth";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer,toast } from "react-toastify";
 const Allbooks = ({ setcheck }) => {
     const { data } = useSelector((state) => state.books);
     const [bookList, setBookList] = useState([]);
@@ -58,7 +59,10 @@ const Allbooks = ({ setcheck }) => {
     };
     // add-to-fav
     const addtofav = async (bookid) => {
-        if (!userid) alert("Please LogIn to add favourite")
+        if (!userid){
+            toast.error("Please LogIn to add favourite");
+           return;
+           }
         const res = await axios.patch(`${apiURL}/api/v1/${userid}/addfavbook`, {
             newfavbookId: bookid
         })
@@ -83,6 +87,7 @@ const Allbooks = ({ setcheck }) => {
     }
     return (
         <div className="outer-container ">
+            <ToastContainer/>
             <h1 style={{ color: "white", marginTop: "2rem" }}>Explore All Books</h1>
             <div className="filter-books" >
 
